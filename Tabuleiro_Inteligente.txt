@@ -1,0 +1,222 @@
+// Declaração de variáveis
+// Definindo o número dos pinos dos LEDs
+const int greenLED1 = 24;
+const int blueLED1 = 26;
+const int greenLED2 = 30;
+const int blueLED2 = 32;
+const int greenLED3 = 36;
+const int blueLED3 = 38;
+const int greenLED4 = 42;
+const int blueLED4 = 44;
+const int greenLED5 = 25;
+const int blueLED5 = 27;
+const int greenLED6 = 31;
+const int blueLED6 = 33;
+const int greenLED7 = 37;
+const int blueLED7 = 39;
+const int greenLED8 = 43;
+const int blueLED8 = 45;
+const int greenLED9 = 49;
+const int blueLED9 = 51;
+
+// Definindo o número dos pinhos dos pushButtons
+const int pushButton1 = 22;
+const int pushButton2 = 28;
+const int pushButton3 = 34;
+const int pushButton4 = 40;
+const int pushButton5 = 23;
+const int pushButton6 = 29;
+const int pushButton7 = 35;
+const int pushButton8 = 41;
+const int pushButton9 = 47;
+const int pushButtonRst = 52;
+
+// Definindo o estado inicial dos pushButtons
+int pushButtonState1 = 0;
+int pushButtonState2 = 0;
+int pushButtonState3 = 0;
+int pushButtonState4 = 0;
+int pushButtonState5 = 0;
+int pushButtonState6 = 0;
+int pushButtonState7 = 0;
+int pushButtonState8 = 0;
+int pushButtonState9 = 0;
+int pushButtonStateRst = 0;
+
+// Definindo o estado inicial dos pushButtons
+int lastPushButtonState1 = 0;
+int lastPushButtonState2 = 0;
+int lastPushButtonState3 = 0;
+int lastPushButtonState4 = 0;
+int lastPushButtonState5 = 0;
+int lastPushButtonState6 = 0;
+int lastPushButtonState7 = 0;
+int lastPushButtonState8 = 0;
+int lastPushButtonState9 = 0;
+int lastPushButtonStateRst = 0;
+
+void setup() {
+  // Iniciando a porta serial
+  Serial.begin(9600);
+
+  // Definindo os pinos dos LEDs como OUTPUT
+  pinMode(greenLED1, OUTPUT);
+  pinMode(blueLED1, OUTPUT);
+  pinMode(pushButton1, INPUT_PULLUP);
+  pinMode(greenLED2, OUTPUT);
+  pinMode(blueLED2, OUTPUT);
+  pinMode(pushButton2, INPUT_PULLUP);
+  pinMode(greenLED3, OUTPUT);
+  pinMode(blueLED3, OUTPUT);
+  pinMode(pushButton3, INPUT_PULLUP);
+  pinMode(greenLED4, OUTPUT);
+  pinMode(blueLED4, OUTPUT);
+  pinMode(pushButton4, INPUT_PULLUP);
+  pinMode(greenLED5, OUTPUT);
+  pinMode(blueLED5, OUTPUT);
+  pinMode(pushButton5, INPUT_PULLUP);
+  pinMode(greenLED6, OUTPUT);
+  pinMode(blueLED6, OUTPUT);
+  pinMode(pushButton6, INPUT_PULLUP);
+  pinMode(greenLED7, OUTPUT);
+  pinMode(blueLED7, OUTPUT);
+  pinMode(pushButton7, INPUT_PULLUP);
+  pinMode(greenLED8, OUTPUT);
+  pinMode(blueLED8, OUTPUT);
+  pinMode(pushButton8, INPUT_PULLUP);
+  pinMode(greenLED9, OUTPUT);
+  pinMode(blueLED9, OUTPUT);
+  pinMode(pushButton9, INPUT_PULLUP);
+  pinMode(pushButtonRst, INPUT_PULLUP);
+}
+
+void loop() {
+
+  // Nesta parte do código nós enviaremos um sinal de entrada para a porta serial se o estado do pushButton for HIGH
+  pushButtonState1 = 1;
+  pushButtonState2 = 1;
+  pushButtonState3 = 1;
+  pushButtonState4 = 1;
+  pushButtonState5 = 1;
+  pushButtonState6 = 1;
+  pushButtonState7 = 1;
+  pushButtonState8 = 1;
+  pushButtonState9 = 1;
+  pushButtonStateRst = 1;
+
+  pushButtonState1 = digitalRead(pushButton1);
+  pushButtonState2 = digitalRead(pushButton2);
+  pushButtonState3 = digitalRead(pushButton3);
+  pushButtonState4 = digitalRead(pushButton4);
+  pushButtonState5 = digitalRead(pushButton5);
+  pushButtonState6 = digitalRead(pushButton6);
+  pushButtonState7 = digitalRead(pushButton7);
+  pushButtonState8 = digitalRead(pushButton8);
+  pushButtonState9 = digitalRead(pushButton9);
+  pushButtonStateRst = digitalRead(pushButtonRst);
+
+  // Verifica se houve uma transição de estado para cada botão
+  if (pushButtonState1 == LOW && lastPushButtonState1 == HIGH) {
+    Serial.println(6);
+  }
+  if (pushButtonState2 == LOW && lastPushButtonState2 == HIGH) {
+    Serial.println(7);
+  }
+  if (pushButtonState3 == LOW && lastPushButtonState3 == HIGH) {
+    Serial.println(8);
+  }
+  if (pushButtonState4 == LOW && lastPushButtonState4 == HIGH) {
+    Serial.println(3);
+  }
+  if (pushButtonState5 == LOW && lastPushButtonState5 == HIGH) {
+    Serial.println(4);
+  }
+  if (pushButtonState6 == LOW && lastPushButtonState6 == HIGH) {
+    Serial.println(5);
+  }
+  if (pushButtonState7 == LOW && lastPushButtonState7 == HIGH) {
+    Serial.println(0);
+  }
+  if (pushButtonState8 == LOW && lastPushButtonState8 == HIGH) {
+    Serial.println(1);
+  }
+  if (pushButtonState9 == LOW && lastPushButtonState9 == HIGH) {
+    Serial.println(2);
+  }
+  if (pushButtonStateRst == LOW && lastPushButtonStateRst == HIGH) {
+    Serial.println("z");
+  }
+
+  // Atualiza o estado anterior dos botões
+  lastPushButtonState1 = pushButtonState1;
+  lastPushButtonState2 = pushButtonState2;
+  lastPushButtonState3 = pushButtonState3;
+  lastPushButtonState4 = pushButtonState4;
+  lastPushButtonState5 = pushButtonState5;
+  lastPushButtonState6 = pushButtonState6;
+  lastPushButtonState7 = pushButtonState7;
+  lastPushButtonState8 = pushButtonState8;
+  lastPushButtonState9 = pushButtonState9;
+  lastPushButtonStateRst = pushButtonStateRst;
+
+  // Nesta parte estamos lendo o sinal de entrada da porta serial
+  // Os LEDs acenderão de acordo com o sinal recebido
+  char inputSignal = Serial.read();
+
+  if (inputSignal == 'a') {
+    digitalWrite(greenLED1, HIGH);
+  } else if (inputSignal == 'b') {
+    digitalWrite(blueLED1, HIGH);
+  } else if (inputSignal == 'c') {
+    digitalWrite(greenLED2, HIGH);
+  } else if (inputSignal == 'd') {
+    digitalWrite(blueLED2, HIGH);
+  } else if (inputSignal == 'e') {
+    digitalWrite(greenLED3, HIGH);
+  } else if (inputSignal == 'f') {
+    digitalWrite(blueLED3, HIGH);
+  } else if (inputSignal == 'g') {
+    digitalWrite(greenLED4, HIGH);
+  } else if (inputSignal == 'h') {
+    digitalWrite(blueLED4, HIGH);
+  } else if (inputSignal == 'i') {
+    digitalWrite(greenLED5, HIGH);
+  } else if (inputSignal == 'j') {
+    digitalWrite(blueLED5, HIGH);
+  } else if (inputSignal == 'k') {
+    digitalWrite(greenLED6, HIGH);
+  } else if (inputSignal == 'l') {
+    digitalWrite(blueLED6, HIGH);
+  } else if (inputSignal == 'm') {
+    digitalWrite(greenLED7, HIGH);
+  } else if (inputSignal == 'n') {
+    digitalWrite(blueLED7, HIGH);
+  } else if (inputSignal == 'o') {
+    digitalWrite(greenLED8, HIGH);
+  } else if (inputSignal == 'p') {
+    digitalWrite(blueLED8, HIGH);
+  } else if (inputSignal == 'q') {
+    digitalWrite(greenLED9, HIGH);
+  } else if (inputSignal == 'r') {
+    digitalWrite(blueLED9, HIGH);
+  } else if (inputSignal == 'z') {
+    digitalWrite(greenLED1, LOW);
+    digitalWrite(blueLED1, LOW);
+    digitalWrite(greenLED2, LOW);
+    digitalWrite(blueLED2, LOW);
+    digitalWrite(greenLED3, LOW);
+    digitalWrite(blueLED3, LOW);
+    digitalWrite(greenLED4, LOW);
+    digitalWrite(blueLED4, LOW);
+    digitalWrite(greenLED5, LOW);
+    digitalWrite(blueLED5, LOW);
+    digitalWrite(greenLED6, LOW);
+    digitalWrite(blueLED6, LOW);
+    digitalWrite(greenLED7, LOW);
+    digitalWrite(blueLED7, LOW);
+    digitalWrite(greenLED8, LOW);
+    digitalWrite(blueLED8, LOW);
+    digitalWrite(greenLED9, LOW);
+    digitalWrite(blueLED9, LOW);
+  }
+}
